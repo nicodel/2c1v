@@ -3,17 +3,53 @@
   <meta charset="utf-8">
   <head>
     <title>Page de test Exoskeleton</title>
+    <link rel="stylesheet" href="css/app.css">
   </head>
 
   <body>
-    <nav>
+    <nav id="nav">
         <ul>
           <li><a href="#">Dashboard</a></li>
           <li><a href="#">Sessions</a></li>
-          <li><a href="#">Objectifs</a></li>
         </ul>
     </nav>
-    <section id="dashboard">
+    <section  disabled="true">
+      <h1>Dashboard</h1>
+      <ul id="dashboard"></ul>
     </section>
+    <section>
+      <h1>Sessions</h1>
+      <ul id="sessions"></ul>
+    </section>
+
+    <script type="text/template" id="item-message">
+			<div class="item-message">
+        <p><%- message %></p>
+			</div>
+		</script>
+    <script type="text/template" id="item-session">
+			<div class="item-session">
+        <li>
+          <p><%- session %></p>
+        </li>
+			</div>
+		</script>
+
+
+
+    <script src="node_modules/exoskeleton/exoskeleton.js"></script>
+    <script src="node_modules/microtemplates/index.js"></script>
+    <script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
+    <script src="node_modules/backbone.nativeview/backbone.nativeview.js"></script>
+    <script>Backbone.View = Backbone.NativeView;</script>
+    <script src="js/models/message.js"></script>
+    <script src="js/models/session.js"></script>
+    <script src="js/collections/messages.js"></script>
+    <script src="js/collections/sessions.js"></script>
+    <script src="js/views/session.js"></script>
+    <script src="js/views/sessions.js"></script>
+    <script src="js/views/dashboard.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

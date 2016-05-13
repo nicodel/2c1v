@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "exoskeleton": "^0.7.0",
+    "backbone.localstorage": "^1.1.16",
+    "backbone.nativeview": "^0.3.2",
+    "microtemplates": "^0.1.0"
+  }
+}
