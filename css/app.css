@@ -21,6 +21,9 @@ nav {
   z-index: 0;
   background: #dbdee3 none repeat scroll 0 0;
 }
+nav ul li {
+  cursor: pointer;
+}
 section {
   position: fixed;
   top: 0;

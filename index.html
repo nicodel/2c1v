@@ -9,15 +9,15 @@
   <body>
     <nav id="nav">
         <ul>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Sessions</a></li>
+          <li id="nav-dashboard">Dashboard</li>
+          <li id="nav-sessions">Sessions</li>
         </ul>
     </nav>
-    <section  disabled="true">
+    <section id="section-dashboard">
       <h1>Dashboard</h1>
       <ul id="dashboard"></ul>
     </section>
-    <section>
+    <section id="section-sessions" disabled="true">
       <h1>Sessions</h1>
       <ul id="sessions"></ul>
     </section>
@@ -29,13 +29,9 @@
 		</script>
     <script type="text/template" id="item-session">
 			<div class="item-session">
-        <li>
-          <p><%- session %></p>
-        </li>
+        <p><%- session %></p>
 			</div>
 		</script>
-
-
 
     <script src="node_modules/exoskeleton/exoskeleton.js"></script>
     <script src="node_modules/microtemplates/index.js"></script>
@@ -44,11 +40,15 @@
     <script>Backbone.View = Backbone.NativeView;</script>
     <script src="js/models/message.js"></script>
     <script src="js/models/session.js"></script>
+    <script src="js/models/item.js"></script>
     <script src="js/collections/messages.js"></script>
     <script src="js/collections/sessions.js"></script>
+    <script src="js/collections/overall.js"></script>
+    <script src="js/views/message.js"></script>
     <script src="js/views/session.js"></script>
     <script src="js/views/sessions.js"></script>
     <script src="js/views/dashboard.js"></script>
+    <script src="js/views/navigation.js"></script>
     <script src="js/router.js"></script>
     <script src="js/app.js"></script>
   </body>

@@ -1,37 +1,37 @@
 /* jshint browser: true */
-/* global Backbone, microtemplate, Session, Sessions */
+/* global Backbone, Overall, SessionView, MessageView */
 'use strict';
-var app = app || {};
 
-(function () {
-	app.DashboardView = Backbone.View.extend({
+var DashboardView = Backbone.View.extend({
+	el: '#dashboard',
+	initialize: function () {
+    this.collection = Overall;
+    this.listenTo(this.collection, 'add', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'reset', this.render);
+    this.render();
+	},
 
-		el: '#dashboard',
-
-		// statsTemplate: microtemplate(document.querySelector('#dashboard-entry').innerHTML),
-
-		events: {
-		},
-
-		initialize: function () {
-
-			// create fake sessions entries
-			var s1 = Sessions.add(new Session({'session'	: 'you ran 3km.'}));
-			var s2 = Sessions.add(new Session({'session'	: 'you ran 7km.'}));
-			s1.save();
-			s2.save();
-
-			// this.listenTo(app.todos, 'add', this.addOne);
-			// this.listenTo(app.todos, 'reset', this.addAll);
-			// this.listenTo(app.todos, 'change:completed', this.filterOne);
-			// this.listenTo(app.todos, 'filter', this.filterAll);
-			// this.listenTo(app.todos, 'all', this.render);
-
-			// Suppresses 'add' events with {reset: true} and prevents the app view
-			// from being re-rendered for every model. Only renders when the 'reset'
-			// event is triggered at the end of the fetch.
-			// app.todos.fetch({reset: true});
-		},
-
-		});
-})();
+  render: function () {
+    this.el.innerHTML = '';
+    this.collection.comparator = function(item) {
+      return item.get('date');
+    };
+    this.collection.sort();
+    this.collection.models.forEach(function (item) {
+      if (item.get('type') === 'message') {
+        this.renderMessage(item);
+      } else if(item.get('type') === 'session') {
+        this.renderSession(item);
+      }
+    }, this);
+  },
+  renderMessage: function (model) {
+    var view = new MessageView({model : model});
+    this.el.appendChild(view.render().el);
+  },
+  renderSession: function (model) {
+    var view = new SessionView({model : model});
+    this.el.appendChild(view.render().el);
+  }
+});

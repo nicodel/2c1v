@@ -11,17 +11,13 @@ var SessionsView = Backbone.NativeView.extend({
     this.listenTo(this.collection, 'reset', this.render);
   },
   render: function () {
-    console.log('render');
     this.el.innerHTML = '';
-    var view = '';
     this.collection.forEach(function (item) {
-      console.log('item', item);
       this.renderItem(item);
     }, this);
   },
   renderItem: function (model) {
     var view = new SessionView({model : model});
-    console.log('view', view);
-    this.el.appenChild(view.render().el);
+    this.el.appendChild(view.render().el);
   }
 });

@@ -1,9 +1,9 @@
-/* global Backbone, Session */
-/* exported Sessions */
+/* global Backbone, Message */
+/* exported Messages */
 'use strict';
 
-var SessionsCollection = Backbone.Collection.extend({
-  model: Session,
+var MessagesCollection = Backbone.Collection.extend({
+  model: Message,
 
   localStorage: new Backbone.LocalStorage('2c1v'),
 
@@ -14,4 +14,4 @@ var SessionsCollection = Backbone.Collection.extend({
   }
 
 });
-var Sessions = new SessionsCollection();
+var Messages = new MessagesCollection();
